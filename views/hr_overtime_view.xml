@@ -54,7 +54,7 @@
 		</record>
 		
 		<menuitem name="Overtime Structures"
-			parent="hr_contract.next_id_56"
+			parent="hr.menu_hr_root"
 			id="menu_hr_overtime_structure"
 			action="action_hr_overtime_structure"
 			sequence="7"/>
