@@ -1,6 +1,6 @@
 
 from datetime import datetime ,date, timedelta 
-from odoo.osv import osv, fields
+from odoo import models, fields
 from odoo.report import report_sxw
 import pytz
 from odoo import SUPERUSER_ID
@@ -8,7 +8,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-class ParticularReport(osv.AbstractModel):
+class ParticularReport(models.AbstractModel):
 	_name = 'report.hr_overtime.hr_attendance_analysis'
 
 
