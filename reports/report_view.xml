@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
 	<data>
 		# Paper Format 
 		<record id="swanco_paperformat" model="report.paperformat">
@@ -30,4 +30,4 @@
 		
 		
 	</data>
-</openerp>
+</odoo>

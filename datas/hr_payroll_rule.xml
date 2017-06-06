@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data noupdate="0">
 
 		<record id="hr_category_overtime" model="hr.salary.rule.category">
@@ -17,5 +17,5 @@
 			<field name="amount_python_compute">result = worked_days.Overtime.number_of_hours * (contract.wage / (30*8))</field>
 		</record>
 	</data>
-</openerp>
+</odoo>
 		
