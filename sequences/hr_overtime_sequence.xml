@@ -1,16 +1,6 @@
 <?xml version="1.0" ?>
 <odoo>
     <data noupdate='1'>
-		
-		<!--
-			Sequence Type
-		-->
-		
-		<record id="ir_seq_type_hr_overtime" model="ir.sequence.type">
-			<field name="name">Overtime Request</field>
-			<field name="code">hr.ov.req</field>
-		</record>
-		
 		<!--
 			Sequence
 		-->
