@@ -1,7 +1,7 @@
-from openerp.osv import fields, osv
+from odoo import fields, models
 from datetime import date
 
-class hr_attendance_reporting(osv.osv_memory):
+class hr_attendance_reporting(models.TransientModel):
 	_name = "hr.attendance.reporting"
 	_description = "HR  Attendance Report Wizard"
 	

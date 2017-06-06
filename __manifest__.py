@@ -8,9 +8,9 @@
 		'sequences/hr_overtime_sequence.xml',
 		'datas/hr_payroll_rule.xml',
 		'views/hr_overtime_view.xml',
-		'reports/report_view.xml',
-		'reports/hr_attendance_analysis_report.xml',
-		'wizards/views/hr_attendance_report_view.xml',
+		#'reports/report_view.xml',
+		#'reports/hr_attendance_analysis_report.xml',
+		#'wizards/views/hr_attendance_report_view.xml',
 	],
 
 	'installable': True,
