@@ -1,12 +1,5 @@
-from __future__ import division
-import time
-import datetime
 from openerp.osv import fields, osv
-from datetime import date, datetime, timedelta
-import openerp.addons.decimal_precision as dp
-from mako.template import Template
-from openerp import SUPERUSER_ID
-import pytz
+from datetime import date
 
 class hr_attendance_reporting(osv.osv_memory):
 	_name = "hr.attendance.reporting"

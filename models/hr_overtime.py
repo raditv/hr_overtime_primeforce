@@ -1,14 +1,9 @@
-import itertools
-from lxml import etree
 import time
 import pytz
 from datetime import datetime,timedelta
-from dateutil.relativedelta import relativedelta
-from openerp import SUPERUSER_ID
-from openerp import models, fields, api, _
-from openerp.exceptions import except_orm, Warning, RedirectWarning
-from openerp.tools import float_compare
-import openerp.addons.decimal_precision as dp
+from odoo import SUPERUSER_ID
+from odoo import models, fields, api, _
+from odoo.exceptions import except_orm
 
 class hr_overtime(models.Model):
 	_name = "hr.overtime"

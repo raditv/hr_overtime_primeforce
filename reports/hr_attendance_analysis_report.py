@@ -1,9 +1,9 @@
 
 from datetime import datetime ,date, timedelta 
-from openerp.osv import osv, fields
-from openerp.report import report_sxw
+from odoo.osv import osv, fields
+from odoo.report import report_sxw
 import pytz
-from openerp import SUPERUSER_ID
+from odoo import SUPERUSER_ID
 import logging
 
 _logger = logging.getLogger(__name__)
