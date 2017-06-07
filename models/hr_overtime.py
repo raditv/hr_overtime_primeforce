@@ -151,7 +151,7 @@ class hr_absensi(models.Model):
 		attendance_obj = self.env['hr.attendance']
 		working_hours_obj = self.env['resource.calendar']
 		user = user_pool.browse(SUPERUSER_ID)
-		tz = pytz.timezone(user.partner_id.tz) or pytz.utc
+		#tz = pytz.timezone(user.partner_id.tz) or pytz.utc
 		for contract in contract_obj.browse(contract_ids):
 			radit = contract.id
 		overtime = {
