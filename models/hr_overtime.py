@@ -428,5 +428,5 @@ class hr_attendance(models.Model):
 			check_out = values['check_out']
 			overtime_ids = self.env['hr.overtime'].search([('employee_id','=', employee_id),('from_date','<=', check_out),('to_date','>=', check_out)])
 			for ov in overtime_ids:
-				ov.write({'actaul_leave_time': name})
+				ov.write({'actaul_leave_time': check_out})
 		return res
