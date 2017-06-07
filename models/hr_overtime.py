@@ -424,9 +424,9 @@ class hr_attendance(models.Model):
 	def create(self, values):
 		res = super(hr_attendance, self).create(values)
 		employee_id = values['employee_id']
-		name = values['name']
-		overtime_ids = self.env['hr.overtime'].search([('employee_id','=', employee_id),('from_date','<=', name),('to_date','>=', name)])
-		if values['action'] == 'sign_out':
+		if values['check_out'] != '':
+			check_out = values['check_out']
+			overtime_ids = self.env['hr.overtime'].search([('employee_id','=', employee_id),('from_date','<=', check_out),('to_date','>=', check_out)])
 			for ov in overtime_ids:
 				ov.write({'actaul_leave_time': name})
 		return res
