@@ -185,7 +185,7 @@ class hr_payroll(models.Model):
 		TIME_FORMAT = "%H:%M:%S"
 		
 		user = user_pool.browse(SUPERUSER_ID)
-		tz = pytz.timezone(user.partner_id.tz) or pytz.utc
+		#tz = pytz.timezone(user.partner_id.tz) or pytz.utc
 		
 		sign_in_date = ""
 		sign_in_attendance_time = timedelta(hours=00, minutes=00, seconds=00)
