@@ -155,10 +155,10 @@ class hr_absensi(models.Model):
 		for contract in contract_obj.browse(contract_ids):
 			radit = contract.id
 		overtime = {
-			'name': 'Absensi',
+			'name': 'Others',
 			'sequence': 11,
-			'code': 'Absensi',
-			'number_of_days': 240 / 24,
+			'code': 'OTH',
+			'number_of_days': 0,
 			'number_of_hours': 0,
 			'contract_id': contract.id,
 		}
