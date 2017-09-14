@@ -430,7 +430,7 @@ class hr_payroll(models.Model):
 			'name': 'Overtime Total',
 			'sequence': 11,
 			'code': 'Overtime',
-			'number_of_days':  computed_days_total
+			'number_of_days':  computed_days_total,
 			'number_of_hours': val_overtime,
 			'contract_id': contract.id,
 		}
