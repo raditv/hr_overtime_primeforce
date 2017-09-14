@@ -177,6 +177,7 @@ class hr_payroll(models.Model):
 		computed_days = 0.0
 		computed_days_total = 0.0
 		holidays_overtime = 0.0
+		computed_overtime = 0.0
 		# Objects definitions
 		user_pool = self.env['res.users']
 		contract_obj = self.env['hr.contract']
@@ -393,8 +394,9 @@ class hr_payroll(models.Model):
 									diff_days = computed_days+1
 									diff_days_total = computed_days_total+1
 									diff_time = overtime.total_time * rule.rate
-									#diff_time = get_time_from_float(diff_time)
-									#diff_time = get_overtime_holiday(diff_time)
+									diff_comp = get_time_from_float(diff_time)
+									diff_comp = get_overtime_holiday(diff_comp)
+									computed_overtime += diff_comp
 									val_overtime += diff_time
 									holidays_overtime += diff_time
 									computed_days = diff_days
@@ -403,8 +405,9 @@ class hr_payroll(models.Model):
 									diff_days = computed_days+1
 									diff_days_total = computed_days_total+1
 									diff_time = overtime.total_time * rule.rate
-									#diff_time = get_time_from_float(diff_time)
-									#diff_time = get_overtime_holiday(diff_time)
+									diff_comp = get_time_from_float(diff_time)
+									diff_comp = get_overtime_holiday(diff_comp)
+									computed_overtime += diff_comp
 									val_overtime += diff_time
 									holidays_overtime += diff_time
 									computed_days = diff_days
@@ -413,8 +416,9 @@ class hr_payroll(models.Model):
 									diff_days = computed_days+1
 									diff_days_total = computed_days_total+1
 									diff_time = overtime.total_time * rule.rate
-									#diff_time = get_time_from_float(diff_time)
-									#diff_time = get_overtime_holiday(diff_time)
+									diff_comp = get_time_from_float(diff_time)
+									diff_comp = get_overtime_holiday(diff_comp)
+									computed_overtime += diff_comp
 									val_overtime += diff_time
 									holidays_overtime += diff_time
 									computed_days = diff_days
@@ -422,6 +426,9 @@ class hr_payroll(models.Model):
 								else:
 									diff_days_total = computed_days_total+1
 									val_overtime += overtime.total_time * rule.rate
+									diff_comp = get_time_from_float(val_overtime)
+									diff_comp = get_overtime_holiday(diff_comp)
+									computed_overtime += diff_comp
 									computed_days_total = diff_days_total
 					
 					
@@ -437,13 +444,22 @@ class hr_payroll(models.Model):
 		overtime_libur = {
 			'name': 'Overtime Hari Libur',
 			'sequence': 12,
-			'code': 'HOL',
+			'code': 'OTHOL',
 			'number_of_days':  computed_days,
 			'number_of_hours': holidays_overtime,
 			'contract_id': contract.id,
 		}
+		overtime_computed = {
+			'name': 'Overtime Computed',
+			'sequence': 12,
+			'code': 'OTCOM',
+			'number_of_days':  computed_days_total,
+			'number_of_hours': computed_overtime,
+			'contract_id': contract.id,
+		}
 		res += [overtime]
 		res += [overtime_libur]
+		res += [overtime_computed]
 		return res
 		
 class hr_attendance(models.Model):
