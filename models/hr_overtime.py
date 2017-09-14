@@ -162,7 +162,7 @@ class hr_absensi(models.Model):
 			'number_of_hours': 0,
 			'contract_id': contract.id,
 		}
-		res += [overtime]
+		#res += [overtime]
 		return res
 
 	
@@ -174,6 +174,7 @@ class hr_payroll(models.Model):
 		res = super(hr_payroll, self).get_worked_day_lines(contract_ids, date_from, date_to)
 		
 		val_overtime = 0.0
+		computed_days = 0.0
 		# Objects definitions
 		user_pool = self.env['res.users']
 		contract_obj = self.env['hr.contract']
@@ -387,16 +388,19 @@ class hr_payroll(models.Model):
 						if rule.type == overtime.type:
 							if overtime.state == 'approve':
 								if overtime.type == 'public_holiday':
+									computed_days += 1
 									diff_time = overtime.total_time * rule.rate
 									diff_time = get_time_from_float(diff_time)
 									diff_time = get_overtime_holiday(diff_time)
 									val_overtime += diff_time
 								elif overtime.type == 'weekend':
+									computed_days =+ 1
 									diff_time = overtime.total_time * rule.rate
 									diff_time = get_time_from_float(diff_time)
 									diff_time = get_overtime_holiday(diff_time)
 									val_overtime += diff_time
 								elif overtime.type =='official_leave':
+									computed_days += 1
 									diff_time = overtime.total_time * rule.rate
 									diff_time = get_time_from_float(diff_time)
 									diff_time = get_overtime_holiday(diff_time)
@@ -410,11 +414,20 @@ class hr_payroll(models.Model):
 			'name': 'Overtime',
 			'sequence': 11,
 			'code': 'Overtime',
-			'number_of_days': val_overtime / 24,
+			'number_of_days':  val_overtime/24,
 			'number_of_hours': val_overtime,
 			'contract_id': contract.id,
 		}
+		overtime_libur = {
+			'name': 'Overtime Hari Libur',
+			'sequence': 12,
+			'code': 'HOL',
+			'number_of_days':  computed_days,
+			'number_of_hours': 0,
+			'contract_id': contract.id,
+		}
 		res += [overtime]
+		res += [overtime_libur]
 		return res
 		
 class hr_attendance(models.Model):
