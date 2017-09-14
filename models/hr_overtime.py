@@ -174,6 +174,8 @@ class hr_payroll(models.Model):
 		res = super(hr_payroll, self).get_worked_day_lines(contract_ids, date_from, date_to)
 		
 		val_overtime = 0.0
+		computed_days = 0.0
+
 		# Objects definitions
 		user_pool = self.env['res.users']
 		contract_obj = self.env['hr.contract']
@@ -386,7 +388,6 @@ class hr_payroll(models.Model):
 					for overtime in self.env['hr.overtime'].search([('employee_id','=',contract.employee_id.id),('from_date','>=',date_from),('to_date','<=',date_to)]):
 						if rule.type == overtime.type:
 							if overtime.state == 'approve':
-								computed_days = 0
 								if overtime.type == 'public_holiday':
 									computed_days += 1
 									diff_time = overtime.total_time * rule.rate
