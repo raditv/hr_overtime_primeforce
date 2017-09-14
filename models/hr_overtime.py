@@ -393,8 +393,8 @@ class hr_payroll(models.Model):
 									diff_days = computed_days+1
 									diff_days_total = computed_days_total+1
 									diff_time = overtime.total_time * rule.rate
-									diff_time = get_time_from_float(diff_time)
-									diff_time = get_overtime_holiday(diff_time)
+									#diff_time = get_time_from_float(diff_time)
+									#diff_time = get_overtime_holiday(diff_time)
 									val_overtime += diff_time
 									holidays_overtime += diff_time
 									computed_days = diff_days
@@ -403,8 +403,8 @@ class hr_payroll(models.Model):
 									diff_days = computed_days+1
 									diff_days_total = computed_days_total+1
 									diff_time = overtime.total_time * rule.rate
-									diff_time = get_time_from_float(diff_time)
-									diff_time = get_overtime_holiday(diff_time)
+									#diff_time = get_time_from_float(diff_time)
+									#diff_time = get_overtime_holiday(diff_time)
 									val_overtime += diff_time
 									holidays_overtime += diff_time
 									computed_days = diff_days
@@ -413,8 +413,8 @@ class hr_payroll(models.Model):
 									diff_days = computed_days+1
 									diff_days_total = computed_days_total+1
 									diff_time = overtime.total_time * rule.rate
-									diff_time = get_time_from_float(diff_time)
-									diff_time = get_overtime_holiday(diff_time)
+									#diff_time = get_time_from_float(diff_time)
+									#diff_time = get_overtime_holiday(diff_time)
 									val_overtime += diff_time
 									holidays_overtime += diff_time
 									computed_days = diff_days
