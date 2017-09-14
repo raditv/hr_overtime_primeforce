@@ -426,7 +426,8 @@ class hr_payroll(models.Model):
 								else:
 									diff_days_total = computed_days_total+1
 									val_overtime += overtime.total_time * rule.rate
-									diff_comp = get_time_from_float(val_overtime)
+									diff_time = overtime.total_time * rule.rate
+									diff_comp = get_time_from_float(diff_time)
 									diff_comp = get_overtime_working_day(diff_comp)
 									computed_overtime += diff_comp
 									computed_days_total = diff_days_total
