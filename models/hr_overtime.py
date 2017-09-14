@@ -175,6 +175,7 @@ class hr_payroll(models.Model):
 		
 		val_overtime = 0.0
 		computed_days = 0.0
+		computed_days_total = 0.0
 		holidays_overtime = 0.0
 		# Objects definitions
 		user_pool = self.env['res.users']
@@ -390,38 +391,46 @@ class hr_payroll(models.Model):
 							if overtime.state == 'approve':
 								if overtime.type == 'public_holiday':
 									diff_days = computed_days+1
+									diff_days_total = computed_days_total+1
 									diff_time = overtime.total_time * rule.rate
 									diff_time = get_time_from_float(diff_time)
 									diff_time = get_overtime_holiday(diff_time)
 									val_overtime += diff_time
 									holidays_overtime += diff_time
 									computed_days = diff_days
+									computed_days_total = diff_days_total
 								elif overtime.type == 'weekend':
 									diff_days = computed_days+1
+									diff_days_total = computed_days_total+1
 									diff_time = overtime.total_time * rule.rate
 									diff_time = get_time_from_float(diff_time)
 									diff_time = get_overtime_holiday(diff_time)
 									val_overtime += diff_time
 									holidays_overtime += diff_time
 									computed_days = diff_days
+									computed_days_total = diff_days_total
 								elif overtime.type =='official_leave':
 									diff_days = computed_days+1
+									diff_days_total = computed_days_total+1
 									diff_time = overtime.total_time * rule.rate
 									diff_time = get_time_from_float(diff_time)
 									diff_time = get_overtime_holiday(diff_time)
 									val_overtime += diff_time
 									holidays_overtime += diff_time
 									computed_days = diff_days
+									computed_days_total = diff_days_total
 								else:
+									diff_days_total = computed_days_total+1
 									val_overtime += overtime.total_time * rule.rate
+									computed_days_total = diff_days_total
 					
 					
 					
 		overtime = {
-			'name': 'Overtime',
+			'name': 'Overtime Total',
 			'sequence': 11,
 			'code': 'Overtime',
-			'number_of_days':  val_overtime/24,
+			'number_of_days':  computed_days_total
 			'number_of_hours': val_overtime,
 			'contract_id': contract.id,
 		}
