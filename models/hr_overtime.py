@@ -387,11 +387,13 @@ class hr_payroll(models.Model):
 						if rule.type == overtime.type:
 							if overtime.state == 'approve':
 								if overtime.type == 'public_holiday':
+									computed_days += 1
 									diff_time = overtime.total_time * rule.rate
 									diff_time = get_time_from_float(diff_time)
 									diff_time = get_overtime_holiday(diff_time)
 									val_overtime += diff_time
 								elif overtime.type == 'weekend':
+									computed_days += 1
 									diff_time = overtime.total_time * rule.rate
 									diff_time = get_time_from_float(diff_time)
 									diff_time = get_overtime_holiday(diff_time)
@@ -410,7 +412,7 @@ class hr_payroll(models.Model):
 			'name': 'Overtime',
 			'sequence': 11,
 			'code': 'Overtime',
-			'number_of_days': val_overtime / 24,
+			'number_of_days': computed_days,
 			'number_of_hours': val_overtime,
 			'contract_id': contract.id,
 		}
