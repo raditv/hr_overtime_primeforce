@@ -392,22 +392,22 @@ class hr_payroll(models.Model):
 									diff_time = overtime.total_time * rule.rate
 									diff_time = get_time_from_float(diff_time)
 									diff_time = get_overtime_holiday(diff_time)
-									val_overtime += diff_time
-									computed_days += diff_days
+									val_overtime = diff_time
+									computed_days = diff_days
 								elif overtime.type == 'weekend':
 									diff_days = computed_days+1
 									diff_time = overtime.total_time * rule.rate
 									diff_time = get_time_from_float(diff_time)
 									diff_time = get_overtime_holiday(diff_time)
 									val_overtime += diff_time
-									computed_days += diff_days
+									computed_days = diff_days
 								elif overtime.type =='official_leave':
 									diff_days = computed_days+1
 									diff_time = overtime.total_time * rule.rate
 									diff_time = get_time_from_float(diff_time)
 									diff_time = get_overtime_holiday(diff_time)
 									val_overtime += diff_time
-									computed_days += diff_days
+									computed_days = diff_days
 								else:
 									val_overtime += overtime.total_time * rule.rate
 					
