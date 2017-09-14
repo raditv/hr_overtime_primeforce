@@ -406,7 +406,6 @@ class hr_payroll(models.Model):
 									val_overtime += diff_time
 								else:
 									val_overtime += overtime.total_time * rule.rate
-									computed_days = 0
 					
 					
 					
