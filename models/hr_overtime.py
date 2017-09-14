@@ -175,6 +175,7 @@ class hr_payroll(models.Model):
 		
 		val_overtime = 0.0
 		computed_days = 0.0
+		holidays_overtime = 0.0
 		# Objects definitions
 		user_pool = self.env['res.users']
 		contract_obj = self.env['hr.contract']
@@ -392,7 +393,8 @@ class hr_payroll(models.Model):
 									diff_time = overtime.total_time * rule.rate
 									diff_time = get_time_from_float(diff_time)
 									diff_time = get_overtime_holiday(diff_time)
-									val_overtime = diff_time
+									val_overtime += diff_time
+									holidays_overtime += diff_time
 									computed_days = diff_days
 								elif overtime.type == 'weekend':
 									diff_days = computed_days+1
@@ -400,6 +402,7 @@ class hr_payroll(models.Model):
 									diff_time = get_time_from_float(diff_time)
 									diff_time = get_overtime_holiday(diff_time)
 									val_overtime += diff_time
+									holidays_overtime += diff_time
 									computed_days = diff_days
 								elif overtime.type =='official_leave':
 									diff_days = computed_days+1
@@ -407,6 +410,7 @@ class hr_payroll(models.Model):
 									diff_time = get_time_from_float(diff_time)
 									diff_time = get_overtime_holiday(diff_time)
 									val_overtime += diff_time
+									holidays_overtime += diff_time
 									computed_days = diff_days
 								else:
 									val_overtime += overtime.total_time * rule.rate
@@ -426,7 +430,7 @@ class hr_payroll(models.Model):
 			'sequence': 12,
 			'code': 'HOL',
 			'number_of_days':  computed_days,
-			'number_of_hours': 0,
+			'number_of_hours': holidays_overtime,
 			'contract_id': contract.id,
 		}
 		res += [overtime]
